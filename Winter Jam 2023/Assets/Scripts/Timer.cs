@@ -59,9 +59,13 @@ public class Timer : MonoBehaviour
     /// </summary>
     void ExpireTime()
     {
+        // TODO: IMPLEMENT LOSE CONDITION
         timerText.text = "Time's Up!";
     }
 
+    /// <summary>
+    /// Stops the timer from counting down
+    /// </summary>
     public void StopTicking()
     {
         isTicking = false;
