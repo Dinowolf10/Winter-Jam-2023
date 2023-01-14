@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -99,6 +100,20 @@ public class AudioManager : MonoBehaviour
         if (sound.source.isPlaying)
         {
             sound.source.Stop();
+        }
+    }
+
+    /// <summary>
+    /// Stops all sounds, excluding music
+    /// </summary>
+    public void StopAllEnvironmentSounds()
+    {
+        foreach (Sound sound in sounds)
+        {
+            if (sound.name != "MusicLoop")
+            {
+                sound.source.Stop();
+            }
         }
     }
 }

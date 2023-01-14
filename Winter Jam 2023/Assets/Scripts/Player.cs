@@ -121,8 +121,7 @@ public class Player : MonoBehaviour
         // If the player hits a trap, restart the level
         if (collision.gameObject.tag == "Spikes" || collision.gameObject.tag == "Dart" || collision.gameObject.tag == "Boulder")
         {
-            audioManager.Play("DeathGrunt");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            StartCoroutine(HandleDeath());
         }
 
         // If the player hits an enemy, determine who should be destroyed
@@ -143,8 +142,7 @@ public class Player : MonoBehaviour
             } 
             else
             {
-                audioManager.Play("DeathGrunt");
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                StartCoroutine(HandleDeath());
             }
         }
     }
@@ -197,5 +195,18 @@ public class Player : MonoBehaviour
         {
             audioManager.PlayUnique("Steps");
         }
+    }
+
+    /// <summary>
+    /// Puts the player in a dead state and reloads the current level
+    /// </summary>
+    private IEnumerator HandleDeath()
+    {
+        audioManager.Play("DeathGrunt");
+        spriteRenderer.enabled = false;
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        yield return new WaitForSeconds(2);
+        audioManager.StopAllEnvironmentSounds();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
