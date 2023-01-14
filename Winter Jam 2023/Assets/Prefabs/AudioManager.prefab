@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2034619056946278126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2034619056946278124}
+  - component: {fileID: 2034619056946278127}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2034619056946278124
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034619056946278126}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2034619056946278127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034619056946278126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbdb870efed6fe04f88d11d7ac3e8131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Bat
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: d3d37cb563536dc4c95f406e4d7b3df9, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: Boulder
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: d226cffa318fe0841b19d0f5436839f8, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: CollectItem
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: a4c11f79dbba6c442b444d45b5421ddc, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: Dart
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 00c18b68e3fcaeb4fa6c4cc7a0a512c4, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: DeathGrunt
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 2d1879abfb65b8e40a14280c7007142a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: OpenDoor
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 87892c99805962c43bb6a9e91c6b95cf, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: Spider
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 5df2acd5c7dad974989077ed45d5443e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: Steps
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 90a86cb1a44f2fb4f80e92f6d2698b79, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+  - name: HurtGrunt
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 69705318a62674f499220449b72565d0, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: Jump
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 5925839bc71cf2b438aea40874da179d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: MusicLoop
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 241ddb34b80d33b4fba22ef9fa6bb0ae, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0

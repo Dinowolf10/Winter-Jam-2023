@@ -17,10 +17,12 @@ public class BoulderProjectile : MonoBehaviour
     private float lifeDuration;
     private bool onFloor = false;
 
+    private AudioManager audioManager;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -29,6 +31,7 @@ public class BoulderProjectile : MonoBehaviour
         // Boulder will only move in the x direction if on the floor
         if (onFloor)
         {
+            audioManager.PlayUnique("Boulder");
             // Update boulder speed
             if (speed < maxSpeed)
             {
@@ -83,6 +86,7 @@ public class BoulderProjectile : MonoBehaviour
         accelerationRate = 0;
         onFloor = false;
         gameObject.SetActive(false);
+        audioManager.StopSound("Boulder");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

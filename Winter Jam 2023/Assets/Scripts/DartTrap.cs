@@ -30,9 +30,13 @@ public class DartTrap : MonoBehaviour
     [SerializeField]
     private Transform firePoint;
 
+    private AudioManager audioManager;
+
     // Start is called before the first frame update
     private void Start()
     {
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+
         // Get reference to dartProjectile if there is none
         if (!dartProjectileTransform || !dartProjectile)
         {
@@ -93,5 +97,7 @@ public class DartTrap : MonoBehaviour
 
         // Update the variables of the dart projectile
         dartProjectile.GetComponent<DartProjectile>().SetProjectile(dartVelocity, dartSpeed, cooldownDuration - .1f);
+
+        audioManager.Play("Dart");
     }
 }

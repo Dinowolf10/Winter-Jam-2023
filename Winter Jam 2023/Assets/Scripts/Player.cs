@@ -28,12 +28,14 @@ public class Player : MonoBehaviour
 
     private CollectableManager collectableManager;
     private Timer timer;
+    private AudioManager audioManager;
 
     // Start is called before the first frame update
     private void Start()
     {
         collectableManager = GameObject.Find("GameManager").GetComponent<CollectableManager>();
         timer = GameObject.Find("GameManager").GetComponent<Timer>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -48,6 +50,8 @@ public class Player : MonoBehaviour
         {
             canJump = false;
         }
+
+        HandleFootsteps();
     }
 
     private void FixedUpdate()
@@ -99,6 +103,8 @@ public class Player : MonoBehaviour
             canJump = false;
             isJumping = true;
         }
+
+        audioManager.PlayUnique("Jump");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -115,6 +121,7 @@ public class Player : MonoBehaviour
         // If the player hits a trap, restart the level
         if (collision.gameObject.tag == "Spikes" || collision.gameObject.tag == "Dart" || collision.gameObject.tag == "Boulder")
         {
+            audioManager.Play("DeathGrunt");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
@@ -123,11 +130,20 @@ public class Player : MonoBehaviour
         {
             if (EnemyStomped(collision))
             {
+                if (collision.gameObject.name.Contains("Spider"))
+                {
+                    audioManager.Play("Spider");
+                }
+                else
+                {
+                    audioManager.Play("Bat");
+                }
                 Destroy(collision.gameObject);
                 rb.AddForce(bounceForce, ForceMode2D.Impulse);
             } 
             else
             {
+                audioManager.Play("DeathGrunt");
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
@@ -140,6 +156,7 @@ public class Player : MonoBehaviour
         {
             Destroy(collision.gameObject);
             collectableManager.UpdateCollectables();
+            audioManager.Play("CollectItem");
         }
 
         // If the player collides with a door, check if it is unlocked
@@ -150,6 +167,7 @@ public class Player : MonoBehaviour
             {
                 // TODO: IMPLEMENT WIN CONDITION
                 timer.StopTicking();
+                audioManager.Play("OpenDoor");
                 Debug.Log("Level Complete!");
             }
         }
@@ -160,9 +178,24 @@ public class Player : MonoBehaviour
     /// </summary>
     /// <param name="collision">collision being checked</param>
     /// <returns>true if an enemy was stomped on, false otherwise</returns>
-    bool EnemyStomped(Collision2D collision)
+    private bool EnemyStomped(Collision2D collision)
     {
         RaycastHit2D hit = Physics2D.BoxCast(transform.position, stompDetection, 0, Vector2.down);
         return hit.collider == collision.collider;
+    }
+
+    /// <summary>
+    /// Starts and stops footstep audio depending on the players actions
+    /// </summary>
+    private void HandleFootsteps()
+    {
+        if (xMovement == 0 || isJumping)
+        {
+            audioManager.StopSound("Steps");
+        }
+        else
+        {
+            audioManager.PlayUnique("Steps");
+        }
     }
 }
