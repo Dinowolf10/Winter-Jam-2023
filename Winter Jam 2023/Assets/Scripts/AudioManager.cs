@@ -14,6 +14,8 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
+        DontDestroyOnLoad(this);
+
         // ensure only one AudioManager exists in a scene
         if (instance == null)
         {
