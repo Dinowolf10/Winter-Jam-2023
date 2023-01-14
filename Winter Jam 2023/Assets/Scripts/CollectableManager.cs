@@ -56,7 +56,7 @@ public class CollectableManager : MonoBehaviour
     /// <summary>
     /// Updates game and UI when a player acquires a collectable
     /// </summary>
-    void UpdateCollectables()
+    public void UpdateCollectables()
     {
         if (acquiredCollectables < requiredCollectabeles)
         {

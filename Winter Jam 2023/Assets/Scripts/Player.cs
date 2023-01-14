@@ -22,10 +22,12 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Vector2 jumpForce;
 
+    private CollectableManager collectableManager;
+
     // Start is called before the first frame update
     private void Start()
     {
-        
+        collectableManager = GameObject.Find("GameManager").GetComponent<CollectableManager>();
     }
 
     // Update is called once per frame
@@ -81,6 +83,16 @@ public class Player : MonoBehaviour
             {
                 isJumping = false;
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // If the player collides with a key fragment, destroy it and update the collectables
+        if (collision.gameObject.tag == "KeyFragment")
+        {
+            Destroy(collision.gameObject);
+            collectableManager.UpdateCollectables();
         }
     }
 }
