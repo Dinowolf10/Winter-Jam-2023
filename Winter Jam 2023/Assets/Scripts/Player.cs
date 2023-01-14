@@ -7,17 +7,16 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     private Rigidbody2D rb;
+    [SerializeField]
+    private Animator playerAnimator;
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
 
-    [SerializeField]
-    private Vector2 moveVelocity;
-    [SerializeField]
     private float xMovement = 0f;
     [SerializeField]
     private float moveSpeed = 5f;
 
-    [SerializeField]
     private bool isJumping = false;
-    [SerializeField]
     private bool canJump = false;
     [SerializeField]
     private Vector2 jumpForce;
@@ -50,6 +49,18 @@ public class Player : MonoBehaviour
     {
         // Move player
         rb.velocity = new Vector2(xMovement * moveSpeed, rb.velocity.y);
+
+        // Update animator bools
+        if (xMovement == 0)
+        {
+            playerAnimator.SetBool("isIdle", true);
+            playerAnimator.SetBool("isRunning", false);
+        }
+        else
+        {
+            playerAnimator.SetBool("isIdle", false);
+            playerAnimator.SetBool("isRunning", true);
+        }
     }
 
     /// <summary>
@@ -59,6 +70,15 @@ public class Player : MonoBehaviour
     public void OnMovement(InputValue value)
     {
         xMovement = value.Get<float>();
+
+        if (xMovement == 1)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else
+        {
+            spriteRenderer.flipX = true;
+        }
     }
 
     /// <summary>
