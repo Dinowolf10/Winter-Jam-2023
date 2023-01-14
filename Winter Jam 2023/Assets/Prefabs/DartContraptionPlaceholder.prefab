@@ -103,7 +103,7 @@ MonoBehaviour:
   dartVelocity: {x: 0, y: 0}
   dartSpeed: 10
   cooldownDuration: 5
-  cooldownTimer: 1
+  cooldownTimer: 3
   dartProjectile: {fileID: 4281330297448070937}
   dartProjectileTransform: {fileID: 4281330297448070939}
   firePoint: {fileID: 4281330298051742722}
@@ -208,6 +208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0}
   speed: 0
+  lifeDuration: 0
 --- !u!58 &4281330297448070941
 CircleCollider2D:
   m_ObjectHideFlags: 0

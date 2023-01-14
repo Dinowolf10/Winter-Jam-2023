@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -107,10 +108,10 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.tag == "Dart")
+        // If the player hits a trap, restart the level
+        if (collision.gameObject.tag == "Spikes" || collision.gameObject.tag == "Dart" || collision.gameObject.tag == "Boulder")
         {
-            // TODO: Restart level when hit by dart
-            collision.gameObject.GetComponent<DartProjectile>().DeactiveProjectile();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
