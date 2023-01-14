@@ -21,6 +21,10 @@ public class Player : MonoBehaviour
     private bool canJump = false;
     [SerializeField]
     private Vector2 jumpForce;
+    [SerializeField]
+    private Vector2 bounceForce;
+    [SerializeField]
+    private Vector2 stompDetection;
 
     private CollectableManager collectableManager;
     private Timer timer;
@@ -113,6 +117,20 @@ public class Player : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+
+        // If the player hits an enemy, determine who should be destroyed
+        if (collision.gameObject.tag == "Enemy")
+        {
+            if (EnemyStomped(collision))
+            {
+                Destroy(collision.gameObject);
+                rb.AddForce(bounceForce, ForceMode2D.Impulse);
+            } 
+            else
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -135,5 +153,16 @@ public class Player : MonoBehaviour
                 Debug.Log("Level Complete!");
             }
         }
+    }
+
+    /// <summary>
+    /// Determines if an enemy was stomped on during this collision
+    /// </summary>
+    /// <param name="collision">collision being checked</param>
+    /// <returns>true if an enemy was stomped on, false otherwise</returns>
+    bool EnemyStomped(Collision2D collision)
+    {
+        RaycastHit2D hit = Physics2D.BoxCast(transform.position, stompDetection, 0, Vector2.down);
+        return hit.collider == collision.collider;
     }
 }

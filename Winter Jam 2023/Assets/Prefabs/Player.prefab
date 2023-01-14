@@ -107,6 +107,8 @@ MonoBehaviour:
   spriteRenderer: {fileID: 6438152154320807344}
   moveSpeed: 5
   jumpForce: {x: 0, y: 5}
+  bounceForce: {x: 0, y: 4}
+  stompDetection: {x: 0.45, y: 0.75}
 --- !u!114 &6438152154320807349
 MonoBehaviour:
   m_ObjectHideFlags: 0
