@@ -23,11 +23,13 @@ public class Player : MonoBehaviour
     private Vector2 jumpForce;
 
     private CollectableManager collectableManager;
+    private Timer timer;
 
     // Start is called before the first frame update
     private void Start()
     {
         collectableManager = GameObject.Find("GameManager").GetComponent<CollectableManager>();
+        timer = GameObject.Find("GameManager").GetComponent<Timer>();
     }
 
     // Update is called once per frame
@@ -93,6 +95,18 @@ public class Player : MonoBehaviour
         {
             Destroy(collision.gameObject);
             collectableManager.UpdateCollectables();
+        }
+
+        // If the player collides with a door, check if it is unlocked
+        if (collision.gameObject.tag == "Door")
+        {
+            Door door = collision.gameObject.GetComponent<Door>();
+            if (door.IsUnlocked())
+            {
+                // TODO: IMPLEMENT WIN CONDITION
+                timer.StopTicking();
+                Debug.Log("Level Complete!");
+            }
         }
     }
 }

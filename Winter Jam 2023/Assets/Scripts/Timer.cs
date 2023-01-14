@@ -17,6 +17,9 @@ public class Timer : MonoBehaviour
     // amount of time remaining
     private float runningTime;
 
+    // determines if time is counting down
+    private bool isTicking;
+
     // UI object that displays the time to the player
     [SerializeField]
     private TextMeshProUGUI timerText;
@@ -25,14 +28,18 @@ public class Timer : MonoBehaviour
     void Start()
     {
         runningTime = startTime;
+        isTicking = true;
     }
 
     // Update is called once per frame
     void Update()
     {
         // decrement the timer and update the UI text
-        runningTime -= Time.deltaTime;
-        timerText.text = runningTime.ToString("00.0");
+        if (isTicking)
+        {
+            runningTime -= Time.deltaTime;
+            timerText.text = runningTime.ToString("00.0");
+        }
 
         // if remaining time is low, update text color to warn player
         if (runningTime <= warningTimeMarker)
@@ -43,15 +50,20 @@ public class Timer : MonoBehaviour
         // if remaining time is up, go to end game state
         if (runningTime <= 0.0f)
         {
-            EndTimer();
+            ExpireTime();
         }
     }
 
     /// <summary>
     /// Handles the event when the player runs out of time in a level
     /// </summary>
-    void EndTimer()
+    void ExpireTime()
     {
         timerText.text = "Time's Up!";
+    }
+
+    public void StopTicking()
+    {
+        isTicking = false;
     }
 }

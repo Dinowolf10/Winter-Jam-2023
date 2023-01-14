@@ -30,9 +30,13 @@ public class CollectableManager : MonoBehaviour
     [SerializeField]
     private Canvas canvas;
 
+    // door script
+    private Door door;
+
     // Start is called before the first frame update
     void Start()
     {
+        door = GameObject.Find("Door").GetComponent<Door>();
         collectableIcons = new List<Image>();
         acquiredCollectables = 0;
 
@@ -66,7 +70,8 @@ public class CollectableManager : MonoBehaviour
 
         if (acquiredCollectables == requiredCollectabeles)
         {
-            // unlock door
+            door.UnlockDoor();
+            Debug.Log("Door Unlocked!");
         }
     }
 }
