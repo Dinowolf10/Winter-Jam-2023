@@ -86,6 +86,11 @@ public class Player : MonoBehaviour
                 isJumping = false;
             }
         }
+
+        if (collision.gameObject.tag == "Dart")
+        {
+            collision.gameObject.GetComponent<DartProjectile>().DeactiveProjectile();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
