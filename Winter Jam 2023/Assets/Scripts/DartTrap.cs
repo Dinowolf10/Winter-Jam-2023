@@ -33,6 +33,7 @@ public class DartTrap : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        // Get reference to dartProjectile if there is none
         if (!dartProjectileTransform || !dartProjectile)
         {
             dartProjectileTransform = transform.Find("DartProjectile");
@@ -40,11 +41,13 @@ public class DartTrap : MonoBehaviour
         }
         dartProjectile.SetActive(false);
 
+        // Get reference to firePoint if there is none
         if (!firePoint)
         {
             firePoint = transform.Find("FirePoint");
         }
 
+        // Set up firePoint position and dart velocity based on the DartDirection enum selected
         if (direction == DartDirection.right)
         {
             firePoint.position = (Vector2)transform.position + Vector2.right;
@@ -70,6 +73,7 @@ public class DartTrap : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        // Update cooldown timer, if it reaches zero fire the projectile and reset timer
         cooldownTimer -= Time.deltaTime;
         if (cooldownTimer <= 0)
         {
@@ -78,10 +82,16 @@ public class DartTrap : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Resets and fires the dart projectile
+    /// </summary>
     private void FireProjectile()
     {
+        // Reset the dart projectile
         dartProjectile.SetActive(true);
         dartProjectileTransform.position = firePoint.position;
-        dartProjectile.GetComponent<DartProjectile>().SetProjectile(dartVelocity, dartSpeed);
+
+        // Update the variables of the dart projectile
+        dartProjectile.GetComponent<DartProjectile>().SetProjectile(dartVelocity, dartSpeed, cooldownDuration - .1f);
     }
 }
