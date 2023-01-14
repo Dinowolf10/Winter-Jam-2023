@@ -75,7 +75,7 @@ public class Player : MonoBehaviour
         {
             spriteRenderer.flipX = false;
         }
-        else
+        else if (xMovement == -1)
         {
             spriteRenderer.flipX = true;
         }
@@ -109,6 +109,7 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.tag == "Dart")
         {
+            // TODO: Restart level when hit by dart
             collision.gameObject.GetComponent<DartProjectile>().DeactiveProjectile();
         }
     }
