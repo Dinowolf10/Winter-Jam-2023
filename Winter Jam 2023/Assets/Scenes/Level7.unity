@@ -5890,11 +5890,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7405661191331981103, guid: 60219aaedccdd3a4299ec27f41d9bd7d, type: 3}
       propertyPath: m_Color.g
-      value: 0.10148144
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7405661191331981103, guid: 60219aaedccdd3a4299ec27f41d9bd7d, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7405661191331981103, guid: 60219aaedccdd3a4299ec27f41d9bd7d, type: 3}
       propertyPath: m_SortingOrder

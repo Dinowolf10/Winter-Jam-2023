@@ -13,6 +13,10 @@ public class Player : MonoBehaviour
     public Animator playerAnimator;
     [SerializeField]
     private SpriteRenderer spriteRenderer;
+    [SerializeField]
+    private Collider2D groundCheckCollider;
+    [SerializeField]
+    private Collider2D stompCheckCollider;
 
     private float xMovement = 0f;
     [SerializeField]
@@ -124,6 +128,7 @@ public class Player : MonoBehaviour
         // If the player hits an enemy, determine who should be destroyed
         if (collision.gameObject.tag == "Enemy")
         {
+            collision.gameObject.GetComponent<MoveObject>().StartCoroutine("AttackPlayer");
             StartCoroutine(HandleDeath());   
         }
     }
@@ -196,6 +201,8 @@ public class Player : MonoBehaviour
         playerInput.enabled = false;
         spriteRenderer.enabled = false;
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        groundCheckCollider.enabled = false;
+        stompCheckCollider.enabled = false;
         yield return new WaitForSeconds(2);
         audioManager.StopAllEnvironmentSounds();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
