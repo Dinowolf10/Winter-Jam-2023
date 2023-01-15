@@ -69,14 +69,22 @@ public class MoveObject : MonoBehaviour
         }
     }
 
-    public IEnumerator AttackPlayer()
+    public IEnumerator AttackPlayer(Vector2 playerPosition)
     {
         isAttacking = true;
         animator.SetBool("isAttacking", true);
         animator.SetBool("isWalking", false);
         animator.SetBool("isIdle", false);
+        if (playerPosition.x - transform.position.x > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else
+        {
+            spriteRenderer.flipX = true;
+        }
 
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(0.6f);
 
         isAttacking = false;
         animator.SetBool("isAttacking", false);

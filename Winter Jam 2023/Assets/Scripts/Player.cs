@@ -128,7 +128,8 @@ public class Player : MonoBehaviour
         // If the player hits an enemy, determine who should be destroyed
         if (collision.gameObject.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<MoveObject>().StartCoroutine("AttackPlayer");
+            MoveObject m = collision.gameObject.GetComponent<MoveObject>();
+            m.StartCoroutine(m.AttackPlayer(transform.position));
             StartCoroutine(HandleDeath());   
         }
     }
@@ -203,6 +204,8 @@ public class Player : MonoBehaviour
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
         groundCheckCollider.enabled = false;
         stompCheckCollider.enabled = false;
+        Camera cam = Camera.main;
+        cam.GetComponent<FollowPlayer>().playerDead = true;
         yield return new WaitForSeconds(2);
         audioManager.StopAllEnvironmentSounds();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

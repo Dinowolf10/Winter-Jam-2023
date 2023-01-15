@@ -30,6 +30,7 @@ public class FollowPlayer : MonoBehaviour
     private Vector3 playerPosition;
     private SpriteRenderer playerSpriteRenderer;
     private float playerY;
+    public bool playerDead;
 
     private void Start()
     {
@@ -40,6 +41,11 @@ public class FollowPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (playerDead)
+        {
+            return;
+        }
+
         // determine if the camera should move on the y-axis or not
         playerY = player.transform.position.y;
         if (playerY > maxYThreshold)
