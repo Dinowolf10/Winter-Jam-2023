@@ -17,9 +17,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float moveSpeed = 5f;
 
-    private bool isJumping = false;
-    [SerializeField]
-    private bool canJump = false;
+    public bool isJumping = false;
+    public bool canJump = false;
     [SerializeField]
     private Vector2 jumpForce;
     [SerializeField]
@@ -42,18 +41,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        //Debug.Log(rb.velocity.y);
-        // Update jump variables
-        /*if (rb.velocity.y == 0f)
-        {
-            canJump = true;
-        }
-        else
-        {
-            canJump = false;
-        }*/
-
-        Debug.DrawRay(transform.position, Vector2.down * 0.3f, Color.green);
+        Debug.DrawRay(transform.position, Vector2.up * 0.7f, Color.green);
 
         HandleFootsteps();
     }
@@ -103,35 +91,25 @@ public class Player : MonoBehaviour
         // Only jump if the player is not currently jumping and if the player can jump (touching ground)
         if (!isJumping && canJump)
         {
+            // Check if there is something right above the player, if there is don't jump
+            RaycastHit2D hit;
+            if (hit = Physics2D.Raycast(transform.position, Vector2.up, 0.7f))
+            {
+                Debug.Log("No Jump");
+                return;
+            }
+
+            // Otherwise, add force to simulate player jump
             rb.AddForce(jumpForce, ForceMode2D.Impulse);
             canJump = false;
             isJumping = true;
-        }
 
-        audioManager.PlayUnique("Jump");
+            audioManager.PlayUnique("Jump");
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Hit Something", collision.gameObject);
-
-        // If the player is jumping and collides with the floor, the current jump is over
-        if (collision.gameObject.tag == "Floor")
-        {
-            RaycastHit2D hit;
-
-            if (hit = Physics2D.Raycast(transform.position, Vector2.down, 1.0f))
-            {
-                //Debug.Log("Hit Floor?", hit.collider.gameObject);
-
-                if (hit.collider.gameObject.tag == "Floor")
-                {
-                    isJumping = false;
-                    canJump = true;
-                }
-            }
-        }
-
         // If the player hits a trap, restart the level
         if (collision.gameObject.tag == "Spikes" || collision.gameObject.tag == "Dart" || collision.gameObject.tag == "Boulder")
         {
@@ -157,38 +135,6 @@ public class Player : MonoBehaviour
             else
             {
                 StartCoroutine(HandleDeath());
-            }
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        // If the player is jumping and collides with the floor, the current jump is over
-        if (collision.gameObject.tag == "Floor")
-        {
-            Debug.Log("Left Floor", collision.gameObject);
-
-            isJumping = true;
-            canJump = false;
-        }
-    }
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        // If the player is jumping and collides with the floor, the current jump is over
-        if (collision.gameObject.tag == "Floor")
-        {
-            RaycastHit2D hit;
-
-            if (hit = Physics2D.Raycast(transform.position, Vector2.down, 1.0f))
-            {
-                Debug.Log("Hit Floor?", hit.collider.gameObject);
-
-                if (hit.collider.gameObject.tag == "Floor")
-                {
-                    isJumping = false;
-                    canJump = true;
-                }
             }
         }
     }
