@@ -32,15 +32,18 @@ public class MoveObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // move the enemy toward the next move spot and apply the desired arc amount
-        transform.position = Vector2.MoveTowards(transform.position, moveSpots[moveSpotIdx].position, moveSpeed * Time.deltaTime);
-        arcVector = new Vector2(transform.position.x, transform.position.y + (Mathf.Sin(Time.deltaTime) * arcMagnitude));
-        transform.position = arcVector;
-
-        // if the enemy has reached a move spot, update it to move toward the next move spot
-        if (Vector2.Distance(transform.position, moveSpots[moveSpotIdx].position) < 0.1f)
+        if (moveSpots.Count == 2)
         {
-            moveSpotIdx = (moveSpotIdx == 0) ? 1 : 0;
+            // move the enemy toward the next move spot and apply the desired arc amount
+            transform.position = Vector2.MoveTowards(transform.position, moveSpots[moveSpotIdx].position, moveSpeed * Time.deltaTime);
+            arcVector = new Vector2(transform.position.x, transform.position.y + (Mathf.Sin(Time.deltaTime) * arcMagnitude));
+            transform.position = arcVector;
+
+            // if the enemy has reached a move spot, update it to move toward the next move spot
+            if (Vector2.Distance(transform.position, moveSpots[moveSpotIdx].position) < 0.1f)
+            {
+                moveSpotIdx = (moveSpotIdx == 0) ? 1 : 0;
+            }
         }
     }
 }

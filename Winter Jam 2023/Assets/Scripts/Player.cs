@@ -24,8 +24,6 @@ public class Player : MonoBehaviour
     private Vector2 jumpForce;
     [SerializeField]
     private Vector2 bounceForce;
-    [SerializeField]
-    private Vector2 stompDetection;
 
     private LevelManager levelManager;
     private CollectableManager collectableManager;
@@ -126,23 +124,7 @@ public class Player : MonoBehaviour
         // If the player hits an enemy, determine who should be destroyed
         if (collision.gameObject.tag == "Enemy")
         {
-            if (EnemyStomped(collision))
-            {
-                if (collision.gameObject.name.Contains("Spider"))
-                {
-                    audioManager.Play("Spider");
-                }
-                else
-                {
-                    audioManager.Play("Bat");
-                }
-                Destroy(collision.gameObject);
-                rb.AddForce(bounceForce, ForceMode2D.Impulse);
-            } 
-            else
-            {
-                StartCoroutine(HandleDeath());
-            }
+            StartCoroutine(HandleDeath());   
         }
     }
 
@@ -174,14 +156,22 @@ public class Player : MonoBehaviour
     }
 
     /// <summary>
-    /// Determines if an enemy was stomped on during this collision
+    /// Handles the event that a player jumps on an enemy
     /// </summary>
-    /// <param name="collision">collision being checked</param>
-    /// <returns>true if an enemy was stomped on, false otherwise</returns>
-    private bool EnemyStomped(Collision2D collision)
+    /// <param name="collision">collision with information about the player and enemy</param>
+    public void StompEnemy(Collider2D collision)
     {
-        RaycastHit2D hit = Physics2D.BoxCast(transform.position, stompDetection, 0, Vector2.down);
-        return hit.collider == collision.collider;
+        Destroy(collision.gameObject);
+        rb.AddForce(bounceForce, ForceMode2D.Impulse);
+
+        if (collision.gameObject.tag.Contains("Bat"))
+        {
+            audioManager.Play("Bat");
+        }
+        else
+        {
+            audioManager.Play("Spider");
+        }
     }
 
     /// <summary>
