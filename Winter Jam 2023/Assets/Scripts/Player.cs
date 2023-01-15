@@ -10,8 +10,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     [SerializeField]
     private PlayerInput playerInput;
-    [SerializeField]
-    private Animator playerAnimator;
+    public Animator playerAnimator;
     [SerializeField]
     private SpriteRenderer spriteRenderer;
 
@@ -109,6 +108,9 @@ public class Player : MonoBehaviour
             canJump = false;
             isJumping = true;
 
+            playerAnimator.SetBool("isIdle", false);
+            playerAnimator.SetBool("isRunning", false);
+            playerAnimator.SetBool("isJumping", true);
             audioManager.PlayUnique("Jump");
         }
     }

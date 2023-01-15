@@ -36,6 +36,7 @@ public class PlayerGroundCheck : MonoBehaviour
                 {
                     player.isJumping = false;
                     player.canJump = true;
+                    player.playerAnimator.SetBool("isJumping", false);
                 }
             }
         }
@@ -69,6 +70,7 @@ public class PlayerGroundCheck : MonoBehaviour
                 {
                     player.isJumping = false;
                     player.canJump = true;
+                    player.playerAnimator.SetBool("isJumping", false);
                 }
             }
         }
