@@ -2315,6 +2315,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6132448733099960508, guid: 17c86fc8f0ad2ff469ecda5aab91afd0, type: 3}
+      propertyPath: m_text
+      value: 'Objective(s):
+
+        \u2022 Collect the key'
+      objectReference: {fileID: 0}
     - target: {fileID: 6325674786395268240, guid: 17c86fc8f0ad2ff469ecda5aab91afd0, type: 3}
       propertyPath: m_Name
       value: Canvas
