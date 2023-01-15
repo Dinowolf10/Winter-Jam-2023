@@ -133,9 +133,7 @@ public class Player : MonoBehaviour
         // If the player collides with a key fragment, destroy it and update the collectables
         if (collision.gameObject.tag == "KeyFragment")
         {
-            Destroy(collision.gameObject);
-            collectableManager.UpdateCollectables();
-            audioManager.Play("CollectItem");
+            collectableManager.UpdateCollectables(collision.gameObject);
         }
 
         // If the player collides with a door, check if it is unlocked

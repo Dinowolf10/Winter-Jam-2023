@@ -12,8 +12,14 @@ public class CollectableManager : MonoBehaviour
     [SerializeField]
     private int requiredCollectabeles;
 
+    [SerializeField]
+    private AudioManager audioManager;
+
     // number of collectables the player currently has acquired
     private int acquiredCollectables;
+
+    [SerializeField]
+    private List<GameObject> acquiredCollectableObjects;
 
     // UI prefab 
     [SerializeField]
@@ -36,6 +42,8 @@ public class CollectableManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+
         door = GameObject.Find("Door").GetComponent<Door>();
         collectableIcons = new List<Image>();
         acquiredCollectables = 0;
@@ -60,12 +68,18 @@ public class CollectableManager : MonoBehaviour
     /// <summary>
     /// Updates game and UI when a player acquires a collectable
     /// </summary>
-    public void UpdateCollectables()
+    public void UpdateCollectables(GameObject collectableAcquired)
     {
         if (acquiredCollectables < requiredCollectabeles)
         {
-            collectableIcons[acquiredCollectables].color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-            acquiredCollectables++;
+            if (!acquiredCollectableObjects.Contains(collectableAcquired))
+            {
+                acquiredCollectableObjects.Add(collectableAcquired);
+                collectableIcons[acquiredCollectables].color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                acquiredCollectables++;
+                audioManager.Play("CollectItem");
+                Destroy(collectableAcquired);
+            }
         }
 
         if (acquiredCollectables == requiredCollectabeles)
