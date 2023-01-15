@@ -48,8 +48,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        Debug.DrawRay(transform.position, Vector2.up * 0.7f, Color.green);
-
         HandleFootsteps();
     }
 
@@ -205,6 +203,7 @@ public class Player : MonoBehaviour
     private IEnumerator HandleDeath()
     {
         audioManager.Play("DeathGrunt");
+        playerInput.enabled = false;
         spriteRenderer.enabled = false;
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
         yield return new WaitForSeconds(2);
