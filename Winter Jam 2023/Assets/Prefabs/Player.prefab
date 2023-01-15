@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1599016584015245830}
   - component: {fileID: 9179532956984892775}
   - component: {fileID: 5361263342790237293}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: StompChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}

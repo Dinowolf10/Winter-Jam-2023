@@ -29,7 +29,7 @@ public class PlayerGroundCheck : MonoBehaviour
         {
             // If the player is standing on the floor, update jump variables
             RaycastHit2D hit;
-            if (hit = Physics2D.Raycast(player.transform.position, Vector2.down, 0.3f))
+            if (hit = Physics2D.Raycast(player.transform.position, Vector2.down, 0.4f))
             {
                 //Debug.Log("Hit Floor?", hit.collider.gameObject);
                 if (hit.collider.gameObject.tag == "Floor")

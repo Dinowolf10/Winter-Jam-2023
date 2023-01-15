@@ -11,6 +11,7 @@ TagManager:
   - Spikes
   - Boulder
   - Enemy
+  - DartContraption
   layers:
   - Default
   - TransparentFX
