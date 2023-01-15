@@ -104,6 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6438152154320807348}
+  playerInput: {fileID: 6438152154320807349}
   playerAnimator: {fileID: 6438152155419614753}
   spriteRenderer: {fileID: 6438152154320807344}
   moveSpeed: 5
@@ -212,7 +213,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.045092255, y: 0.18605095}
+  m_Offset: {x: -0.045092255, y: 0.17064592}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -223,7 +224,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.58035976, y: 0.9823867}
+  m_Size: {x: 0.58035976, y: 0.95157665}
   m_EdgeRadius: 0
 --- !u!1 &8614417299207286960
 GameObject:

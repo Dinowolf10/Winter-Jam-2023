@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Rigidbody2D rb;
     [SerializeField]
+    private PlayerInput playerInput;
+    [SerializeField]
     private Animator playerAnimator;
     [SerializeField]
     private SpriteRenderer spriteRenderer;
@@ -26,15 +28,20 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Vector2 stompDetection;
 
+    private LevelManager levelManager;
     private CollectableManager collectableManager;
     private Timer timer;
     private AudioManager audioManager;
 
+    private bool openedDoor = false;
+
     // Start is called before the first frame update
     private void Start()
     {
-        collectableManager = GameObject.Find("GameManager").GetComponent<CollectableManager>();
-        timer = GameObject.Find("GameManager").GetComponent<Timer>();
+        GameObject gameManager = GameObject.Find("GameManager");
+        levelManager = gameManager.GetComponent<LevelManager>();
+        collectableManager = gameManager.GetComponent<CollectableManager>();
+        timer = gameManager.GetComponent<Timer>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
@@ -153,9 +160,12 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Door")
         {
             Door door = collision.gameObject.GetComponent<Door>();
-            if (door.IsUnlocked())
+            if (door.IsUnlocked() && !openedDoor)
             {
                 // TODO: IMPLEMENT WIN CONDITION
+                //playerInput.enabled = false;
+                openedDoor = true;
+                levelManager.StartCoroutine("LoadLevelTransition");
                 timer.StopTicking();
                 audioManager.Play("OpenDoor");
                 Debug.Log("Level Complete!");

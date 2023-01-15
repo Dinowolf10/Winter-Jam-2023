@@ -8,6 +8,8 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     private bool isUnlocked;
+    [SerializeField]
+    private Sprite unlockedDoorSprite;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +29,7 @@ public class Door : MonoBehaviour
     public void UnlockDoor()
     {
         isUnlocked = true;
-        // TODO: UPDATE DOOR SPRITE
+        GetComponent<SpriteRenderer>().sprite = unlockedDoorSprite;
     }
 
     /// <summary>
