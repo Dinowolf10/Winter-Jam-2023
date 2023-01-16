@@ -97,7 +97,7 @@ public class CollectableManager : MonoBehaviour
                 {
                     if (collectableIcons[i].sprite == sp.sprite)
                     {
-                        collectableIcons[acquiredCollectables].color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                        collectableIcons[i].color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
                     }
                 }
                 acquiredCollectables++;
