@@ -28,7 +28,11 @@ public class Timer : MonoBehaviour
     [SerializeField]
     private LevelManager levelManager;
 
+    [SerializeField]
+    private AudioManager audioManager;
+
     private bool timeExpired = false;
+    private bool lowTime = false;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +46,7 @@ public class Timer : MonoBehaviour
         {
             isTicking = true;
         }
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -55,9 +60,11 @@ public class Timer : MonoBehaviour
         }
 
         // if remaining time is low, update text color to warn player
-        if (runningTime <= warningTimeMarker)
+        if (runningTime <= warningTimeMarker && !lowTime)
         {
             timerText.color = Color.red;
+            audioManager.Play("LowTime");
+            lowTime = true;
         }
         
         // if remaining time is up, go to end game state

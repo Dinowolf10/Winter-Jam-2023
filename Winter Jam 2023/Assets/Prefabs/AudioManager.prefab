@@ -89,7 +89,7 @@ MonoBehaviour:
     loop: 0
   - name: Steps
     source: {fileID: 0}
-    clip: {fileID: 8300000, guid: 90a86cb1a44f2fb4f80e92f6d2698b79, type: 3}
+    clip: {fileID: 8300000, guid: 5f37f064faa5fb1488b9e81e77c2219d, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
@@ -120,6 +120,12 @@ MonoBehaviour:
   - name: ButtonHover
     source: {fileID: 0}
     clip: {fileID: 8300000, guid: 0aa8c784944d91045a592c69f8b7bf5e, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+  - name: LowTime
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: bdf9131c86b2f6947b057d12522e023c, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
