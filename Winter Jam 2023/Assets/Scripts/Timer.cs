@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Timer that determines how much time the player has to complete a level
@@ -33,7 +34,14 @@ public class Timer : MonoBehaviour
     void Start()
     {
         runningTime = startTime;
-        isTicking = true;
+        if (SceneManager.GetActiveScene().name == "Level1")
+        {
+            isTicking = false;
+        }
+        else
+        {
+            isTicking = true;
+        }
     }
 
     // Update is called once per frame
@@ -77,5 +85,10 @@ public class Timer : MonoBehaviour
     public void StopTicking()
     {
         isTicking = false;
+    }
+
+    public void StartTicking()
+    {
+        isTicking = true;
     }
 }

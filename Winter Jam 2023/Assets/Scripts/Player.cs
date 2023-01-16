@@ -37,6 +37,21 @@ public class Player : MonoBehaviour
     private bool openedDoor = false;
     private bool isDying = false;
 
+    // For opening cutscene
+    public bool inCutscene = false;
+    [SerializeField]
+    private GameObject key;
+    [SerializeField]
+    private GameObject crown;
+    [SerializeField]
+    private GameObject cutsceneCanvas;
+    [SerializeField]
+    private GameObject firstText;
+    [SerializeField]
+    private GameObject secondText;
+    [SerializeField]
+    private GameObject timerCanvas;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -45,16 +60,35 @@ public class Player : MonoBehaviour
         collectableManager = gameManager.GetComponent<CollectableManager>();
         timer = gameManager.GetComponent<Timer>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+
+        if (SceneManager.GetActiveScene().name == "Level1")
+        {
+            playerInput.enabled = false;
+            Camera cam = Camera.main;
+            cam.GetComponent<FollowPlayer>().playerDead = true;
+            inCutscene = true;
+            StartCoroutine(OpeningCutscene());
+        }
     }
 
     // Update is called once per frame
     private void Update()
     {
+        if (inCutscene)
+        {
+            return;
+        }
+
         HandleFootsteps();
     }
 
     private void FixedUpdate()
     {
+        if (inCutscene)
+        {
+            return;
+        }
+
         // Move player
         rb.velocity = new Vector2(xMovement * moveSpeed, rb.velocity.y);
 
@@ -229,5 +263,52 @@ public class Player : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+    }
+
+    private IEnumerator OpeningCutscene()
+    {
+        Door door = GameObject.Find("Door").GetComponent<Door>();
+
+        yield return new WaitForSeconds(1f);
+
+        Vector2 targetPosition = new Vector2(-4.5f, -1.5f);
+        while (Vector2.Distance(transform.position, targetPosition) > 0.1f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, 2.5f * Time.deltaTime);
+            playerAnimator.SetBool("isRunning", true);
+            playerAnimator.SetBool("isIdle", false);
+            yield return null;
+        }
+
+        playerAnimator.SetBool("isRunning", false);
+        playerAnimator.SetBool("isIdle", true);
+        audioManager.Play("CollectItem");
+        cutsceneCanvas.SetActive(true);
+        yield return new WaitForSeconds(8f);
+
+        audioManager.Play("OpenDoor");
+        key.SetActive(true);
+        door.LockDoor();
+        rb.AddForce(bounceForce, ForceMode2D.Impulse);
+        playerAnimator.SetBool("isIdle", false);
+        playerAnimator.SetBool("isRunning", false);
+        playerAnimator.SetBool("isJumping", true);
+        cutsceneCanvas.SetActive(false);
+
+        yield return new WaitForSeconds(2f);
+        cutsceneCanvas.SetActive(true);
+        firstText.SetActive(false);
+        secondText.SetActive(true);
+
+        yield return new WaitForSeconds(10f);
+
+        Camera cam = Camera.main;
+        cam.GetComponent<FollowPlayer>().playerDead = false;
+        inCutscene = false;
+        timer.StartTicking();
+        crown.SetActive(false);
+        timerCanvas.SetActive(true);
+        cutsceneCanvas.SetActive(false);
+        playerInput.enabled = true;
     }
 }

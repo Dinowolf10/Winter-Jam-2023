@@ -10,6 +10,8 @@ public class Door : MonoBehaviour
     private bool isUnlocked;
     [SerializeField]
     private Sprite unlockedDoorSprite;
+    [SerializeField]
+    private Sprite lockedDoorSprite;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +32,12 @@ public class Door : MonoBehaviour
     {
         isUnlocked = true;
         GetComponent<SpriteRenderer>().sprite = unlockedDoorSprite;
+    }
+
+    public void LockDoor()
+    {
+        isUnlocked = false;
+        GetComponent<SpriteRenderer>().sprite = lockedDoorSprite;
     }
 
     /// <summary>
