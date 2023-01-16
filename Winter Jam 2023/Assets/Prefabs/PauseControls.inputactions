@@ -2,7 +2,7 @@
     "name": "PauseControls",
     "maps": [
         {
-            "name": "Pause",
+            "name": "PauseManager",
             "id": "0041b435-acfb-4476-b48b-03c88f93f6c5",
             "actions": [
                 {
@@ -30,5 +30,22 @@
             ]
         }
     ],
-    "controlSchemes": []
+    "controlSchemes": [
+        {
+            "name": "Mouse + Keyboard",
+            "bindingGroup": "Mouse + Keyboard",
+            "devices": [
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
 }

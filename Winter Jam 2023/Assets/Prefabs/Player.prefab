@@ -187,6 +187,13 @@ MonoBehaviour:
   canJump: 0
   jumpForce: {x: 0, y: 23.5}
   bounceForce: {x: 0, y: 35}
+  inCutscene: 0
+  key: {fileID: 0}
+  crown: {fileID: 0}
+  cutsceneCanvas: {fileID: 0}
+  firstText: {fileID: 0}
+  secondText: {fileID: 0}
+  timerCanvas: {fileID: 0}
 --- !u!114 &6438152154320807349
 MonoBehaviour:
   m_ObjectHideFlags: 0

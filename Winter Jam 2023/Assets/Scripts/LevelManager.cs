@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class LevelManager : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class LevelManager : MonoBehaviour
     private FollowPlayer camFollow;
     [SerializeField]
     private Vector2 endWallSpeed;
+    [SerializeField]
+    private Canvas pauseMenu;
+    public bool gamePaused = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,11 +27,7 @@ public class LevelManager : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<Player>();
         cam = Camera.main;
         camFollow = cam.GetComponent<FollowPlayer>();
-
-        if (SceneManager.GetActiveScene().name == "Level1")
-        {
-            StartCoroutine(PlayOpeningCutscene());
-        }
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
@@ -74,8 +74,26 @@ public class LevelManager : MonoBehaviour
         player.StartCoroutine(player.HandleDeath());
     }
 
-    public IEnumerator PlayOpeningCutscene()
+    public void OnPause(InputValue value)
     {
-        yield return null;
+        if (player.inCutscene)
+        {
+            return;
+        }
+
+        if (gamePaused)
+        {
+            pauseMenu.gameObject.SetActive(false);
+            gamePaused = false;
+            Time.timeScale = 1;
+            player.GetComponent<PlayerInput>().enabled = true;
+        }
+        else
+        {
+            pauseMenu.gameObject.SetActive(true);
+            gamePaused = true;
+            Time.timeScale = 0;
+            player.GetComponent<PlayerInput>().enabled = false;
+        }
     }
 }

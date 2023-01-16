@@ -20,16 +20,24 @@ public class BoulderProjectile : MonoBehaviour
     private Animator animator;
 
     private AudioManager audioManager;
+    private LevelManager levelManager;
 
     // Start is called before the first frame update
     void Start()
     {
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        levelManager = GameObject.Find("GameManager").GetComponent<LevelManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (levelManager.gamePaused)
+        {
+            audioManager.StopSound("Boulder");
+            return;
+        }
+
         // Boulder will only move in the x direction if on the floor
         if (onFloor)
         {
