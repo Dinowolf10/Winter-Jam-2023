@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class MainMenu : MonoBehaviour
 {
@@ -49,5 +50,17 @@ public class MainMenu : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("Level1");
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void ResumeGame()
+    {
+        GameObject.Find("GameManager").GetComponent<LevelManager>().gamePaused = false;
+        Time.timeScale = 1;
+        GameObject.Find("Player").GetComponent<PlayerInput>().enabled = true;
     }
 }

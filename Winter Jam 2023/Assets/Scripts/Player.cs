@@ -51,6 +51,8 @@ public class Player : MonoBehaviour
     private GameObject secondText;
     [SerializeField]
     private GameObject timerCanvas;
+    [SerializeField]
+    private GameObject winCanvas;
 
     // Start is called before the first frame update
     private void Start()
@@ -202,7 +204,14 @@ public class Player : MonoBehaviour
                 playerInput.enabled = false;
                 openedDoor = true;
                 levelManager.StopAllCoroutines();
-                levelManager.StartCoroutine("LoadLevelTransition");
+                if (SceneManager.GetActiveScene().name == "Level11")
+                {
+                    WinGame();
+                }
+                else
+                {
+                    levelManager.StartCoroutine("LoadLevelTransition");
+                }
                 timer.StopTicking();
                 audioManager.Play("OpenDoor");
                 Debug.Log("Level Complete!");
@@ -315,6 +324,11 @@ public class Player : MonoBehaviour
         timerCanvas.SetActive(true);
         cutsceneCanvas.SetActive(false);
         playerInput.enabled = true;
+    }
+
+    private void WinGame()
+    {
+        winCanvas.SetActive(true);
     }
 
     /*private IEnumerator OpeningCutsceneMenu()
