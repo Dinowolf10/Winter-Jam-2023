@@ -16,6 +16,8 @@ public class BoulderProjectile : MonoBehaviour
     [SerializeField]
     private float lifeDuration;
     private bool onFloor = false;
+    [SerializeField]
+    private Animator animator;
 
     private AudioManager audioManager;
 
@@ -43,6 +45,7 @@ public class BoulderProjectile : MonoBehaviour
                 {
                     speed = maxSpeed;
                 }
+                animator.speed = (2 * speed) / maxSpeed;
             }
 
             // Move boulder projectile
@@ -95,6 +98,8 @@ public class BoulderProjectile : MonoBehaviour
         if (collision.gameObject.tag == "Floor")
         {
             onFloor = true;
+            animator.SetBool("isRolling", true);
+            animator.speed = (2 * speed) / maxSpeed;
         }
         // Otherwise, deactivate projectile when colliding into something besides the floor
         else
