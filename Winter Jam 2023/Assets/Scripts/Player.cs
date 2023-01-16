@@ -69,6 +69,11 @@ public class Player : MonoBehaviour
             inCutscene = true;
             StartCoroutine(OpeningCutscene());
         }
+        /*else if (SceneManager.GetActiveScene().name == "MainMenu")
+        {
+            playerInput.enabled = false;
+            inCutscene = true;
+        }*/
     }
 
     // Update is called once per frame
@@ -311,4 +316,15 @@ public class Player : MonoBehaviour
         cutsceneCanvas.SetActive(false);
         playerInput.enabled = true;
     }
+
+    /*private IEnumerator OpeningCutsceneMenu()
+    {
+        playerAnimator.SetBool("isIdle", false);
+        playerAnimator.SetBool("isRunning", false);
+        playerAnimator.SetBool("isJumping", true);
+        audioManager.PlayUnique("Jump");
+        rb.AddForce(new Vector2 (5.0f, bounceForce.y), ForceMode2D.Impulse);
+
+        yield return new WaitForSeconds(2f);
+    }*/
 }
