@@ -23,6 +23,11 @@ public class LevelManager : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<Player>();
         cam = Camera.main;
         camFollow = cam.GetComponent<FollowPlayer>();
+
+        if (SceneManager.GetActiveScene().name == "Level1")
+        {
+            StartCoroutine(PlayOpeningCutscene());
+        }
     }
 
     // Update is called once per frame
@@ -67,5 +72,10 @@ public class LevelManager : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
         player.StartCoroutine(player.HandleDeath());
+    }
+
+    public IEnumerator PlayOpeningCutscene()
+    {
+        yield return null;
     }
 }
