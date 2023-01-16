@@ -4692,9 +4692,17 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 5769401225155991807, guid: 4338db3724dcb964a81981aaa07eface, type: 3}
+      propertyPath: startTime
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5769401225155991807, guid: 4338db3724dcb964a81981aaa07eface, type: 3}
       propertyPath: timerText
       value: 
       objectReference: {fileID: 1107041181}
+    - target: {fileID: 5769401225155991807, guid: 4338db3724dcb964a81981aaa07eface, type: 3}
+      propertyPath: warningTimeMarker
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4338db3724dcb964a81981aaa07eface, type: 3}
 --- !u!1001 &510569355535524939
