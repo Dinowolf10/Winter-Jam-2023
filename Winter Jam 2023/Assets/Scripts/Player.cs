@@ -292,6 +292,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(8f);
 
         audioManager.Play("OpenDoor");
+        crown.SetActive(false);
         key.SetActive(true);
         door.LockDoor();
         rb.AddForce(bounceForce, ForceMode2D.Impulse);
@@ -311,7 +312,6 @@ public class Player : MonoBehaviour
         cam.GetComponent<FollowPlayer>().playerDead = false;
         inCutscene = false;
         timer.StartTicking();
-        crown.SetActive(false);
         timerCanvas.SetActive(true);
         cutsceneCanvas.SetActive(false);
         playerInput.enabled = true;
