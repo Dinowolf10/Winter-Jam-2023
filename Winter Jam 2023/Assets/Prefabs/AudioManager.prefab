@@ -129,3 +129,9 @@ MonoBehaviour:
     volume: 0.5
     pitch: 1
     loop: 0
+  - name: MainMenuLoop
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 18cb2e6c0b5e15842945be197b48dbcf, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
