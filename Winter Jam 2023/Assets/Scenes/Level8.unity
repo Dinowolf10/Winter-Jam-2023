@@ -594,6 +594,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4281330296565749449, guid: 0ba873929d150714bae057f0a112245d, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4281330296565749451, guid: 0ba873929d150714bae057f0a112245d, type: 3}
       propertyPath: direction
       value: 0
@@ -601,6 +605,10 @@ PrefabInstance:
     - target: {fileID: 4281330296565749451, guid: 0ba873929d150714bae057f0a112245d, type: 3}
       propertyPath: cooldownDuration
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4281330297448070936, guid: 0ba873929d150714bae057f0a112245d, type: 3}
+      propertyPath: m_FlipX
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ba873929d150714bae057f0a112245d, type: 3}
@@ -1825,6 +1833,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7820880750779184084, guid: 070e41ddc8dbe3841aeecbeb96dda550, type: 3}
+      propertyPath: maxYThreshold
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7820880750779184088, guid: 070e41ddc8dbe3841aeecbeb96dda550, type: 3}
       propertyPath: m_Name
       value: Main Camera

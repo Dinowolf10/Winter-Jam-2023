@@ -65,12 +65,12 @@ public class DartTrap : MonoBehaviour
         else if (direction == DartDirection.up)
         {
             firePoint.position = (Vector2)transform.position + Vector2.up;
-            dartVelocity = Vector2.up;
+            dartVelocity = Vector2.left;
         }
         else
         {
             firePoint.position = (Vector2)transform.position + Vector2.down;
-            dartVelocity = Vector2.down;
+            dartVelocity = Vector2.left;
         }
     }
 
