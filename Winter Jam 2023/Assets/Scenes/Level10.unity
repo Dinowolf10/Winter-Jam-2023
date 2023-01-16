@@ -478,6 +478,10 @@ PrefabInstance:
       propertyPath: cooldownDuration
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4281330297448070936, guid: 0ba873929d150714bae057f0a112245d, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ba873929d150714bae057f0a112245d, type: 3}
 --- !u!1001 &338060227
@@ -648,6 +652,10 @@ PrefabInstance:
     - target: {fileID: 4281330296565749448, guid: 0ba873929d150714bae057f0a112245d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4281330296565749449, guid: 0ba873929d150714bae057f0a112245d, type: 3}
+      propertyPath: m_FlipX
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4281330296565749451, guid: 0ba873929d150714bae057f0a112245d, type: 3}
       propertyPath: direction

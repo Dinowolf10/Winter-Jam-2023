@@ -111,3 +111,15 @@ MonoBehaviour:
     volume: 0.3
     pitch: 1
     loop: 1
+  - name: ButtonClick
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: ba96ab0bf68e382469b533830b6e53cc, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+  - name: ButtonHover
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 0aa8c784944d91045a592c69f8b7bf5e, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
