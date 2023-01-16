@@ -48,7 +48,7 @@ public class CollectableManager : MonoBehaviour
         collectableIcons = new List<Image>();
         acquiredCollectables = 0;
 
-        int totalOffset = 0;
+        /*int totalOffset = 0;
         for (int i = 0; i < requiredCollectabeles; i++)
         {
             collectableIcons.Add(Instantiate(collectableIconPrefab));
@@ -56,6 +56,23 @@ public class CollectableManager : MonoBehaviour
             collectableIcons[i].rectTransform.anchoredPosition = new Vector2(50 + totalOffset, -50);
             collectableIcons[i].color = new Color(1.0f, 1.0f, 1.0f, 0.25f);
             totalOffset += collectableIconOffset;
+        }*/
+
+        if (requiredCollectabeles == 1)
+        {
+            Image image = canvas.transform.Find("Key").GetComponent<Image>();
+            image.color = new Color(1.0f, 1.0f, 1.0f, 0.25f);
+            collectableIcons.Add(image);
+        }
+
+        if (requiredCollectabeles == 2)
+        {
+            Image image = canvas.transform.Find("KeyFragment").GetComponent<Image>();
+            Image image2 = canvas.transform.Find("KeyFragment2").GetComponent<Image>();
+            image.color = new Color(1.0f, 1.0f, 1.0f, 0.25f);
+            image2.color = new Color(1.0f, 1.0f, 1.0f, 0.25f);
+            collectableIcons.Add(image);
+            collectableIcons.Add(image2);
         }
     }
 
@@ -75,7 +92,14 @@ public class CollectableManager : MonoBehaviour
             if (!acquiredCollectableObjects.Contains(collectableAcquired))
             {
                 acquiredCollectableObjects.Add(collectableAcquired);
-                collectableIcons[acquiredCollectables].color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                SpriteRenderer sp = collectableAcquired.GetComponent<SpriteRenderer>();
+                for (int i = 0; i < collectableIcons.Count; i++)
+                {
+                    if (collectableIcons[i].sprite == sp.sprite)
+                    {
+                        collectableIcons[acquiredCollectables].color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                    }
+                }
                 acquiredCollectables++;
                 audioManager.Play("CollectItem");
                 Destroy(collectableAcquired);
