@@ -28,6 +28,6 @@ public class LevelManager : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        audioManager.StopSound("Steps");
+        audioManager.StopAllEnvironmentSounds();
     }
 }
