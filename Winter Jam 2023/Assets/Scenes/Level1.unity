@@ -2437,17 +2437,9 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 5769401225155991807, guid: 4338db3724dcb964a81981aaa07eface, type: 3}
-      propertyPath: startTime
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5769401225155991807, guid: 4338db3724dcb964a81981aaa07eface, type: 3}
       propertyPath: timerText
       value: 
       objectReference: {fileID: 1617789246}
-    - target: {fileID: 5769401225155991807, guid: 4338db3724dcb964a81981aaa07eface, type: 3}
-      propertyPath: warningTimeMarker
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 8080796102477390180, guid: 4338db3724dcb964a81981aaa07eface, type: 3}
       propertyPath: endWallSpeed.x
       value: 2

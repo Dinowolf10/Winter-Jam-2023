@@ -42,6 +42,10 @@ public class LevelManager : MonoBehaviour
         audioManager.StopAllEnvironmentSounds();
     }
 
+    /// <summary>
+    /// Out of time death "cutscene"
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator LoseLevelTransition()
     {
         camFollow.playerDead = true;

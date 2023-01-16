@@ -160,8 +160,9 @@ public class Player : MonoBehaviour
             if (door.IsUnlocked() && !openedDoor)
             {
                 // TODO: IMPLEMENT WIN CONDITION
-                //playerInput.enabled = false;
+                playerInput.enabled = false;
                 openedDoor = true;
+                levelManager.StopAllCoroutines();
                 levelManager.StartCoroutine("LoadLevelTransition");
                 timer.StopTicking();
                 audioManager.Play("OpenDoor");
@@ -223,6 +224,10 @@ public class Player : MonoBehaviour
         cam.GetComponent<FollowPlayer>().playerDead = true;
         yield return new WaitForSeconds(2);
         audioManager.StopAllEnvironmentSounds();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        if (!openedDoor)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 }
