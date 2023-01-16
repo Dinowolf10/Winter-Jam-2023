@@ -24,6 +24,11 @@ public class Timer : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI timerText;
 
+    [SerializeField]
+    private LevelManager levelManager;
+
+    private bool timeExpired = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,8 +53,10 @@ public class Timer : MonoBehaviour
         }
         
         // if remaining time is up, go to end game state
-        if (runningTime <= 0.0f)
+        if (runningTime <= 0.0f && !timeExpired)
         {
+            timeExpired = true;
+            StopTicking();
             ExpireTime();
         }
     }
@@ -60,7 +67,8 @@ public class Timer : MonoBehaviour
     void ExpireTime()
     {
         // TODO: IMPLEMENT LOSE CONDITION
-        timerText.text = "Time's Up!";
+        //timerText.text = "Time's Up!";
+        levelManager.StartCoroutine(levelManager.LoseLevelTransition());
     }
 
     /// <summary>

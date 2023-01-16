@@ -207,7 +207,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// Puts the player in a dead state and reloads the current level
     /// </summary>
-    private IEnumerator HandleDeath()
+    public IEnumerator HandleDeath()
     {
         audioManager.Play("DeathGrunt");
         playerAnimator.SetBool("isIdle", false);

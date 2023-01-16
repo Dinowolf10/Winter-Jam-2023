@@ -46,9 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d730d93fbb1d52842a679576dff07978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTime: 15
-  warningTimeMarker: 10
+  startTime: 3
+  warningTimeMarker: 2
   timerText: {fileID: 0}
+  levelManager: {fileID: 8080796102477390180}
 --- !u!114 &5769401225155991805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,6 +63,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requiredCollectabeles: 2
+  audioManager: {fileID: 0}
+  acquiredCollectableObjects: []
   collectableIconPrefab: {fileID: 4992484226774680251, guid: e6e94a1bbfe236b4b996d1a50c5a8ac8, type: 3}
   collectableIconOffset: 40
   canvas: {fileID: 0}
@@ -77,3 +80,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e59d4be7eeb47e441a3a7e540422efd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
+  player: {fileID: 0}
+  cam: {fileID: 0}
+  camFollow: {fileID: 0}
+  endWallSpeed: {x: 1, y: 0}

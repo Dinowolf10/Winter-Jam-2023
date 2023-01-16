@@ -32,6 +32,9 @@ public class FollowPlayer : MonoBehaviour
     private float playerY;
     public bool playerDead;
 
+    public Transform leftWallEnd;
+    public Transform rightWallEnd;
+
     private void Start()
     {
         player = GameObject.Find("Player");
