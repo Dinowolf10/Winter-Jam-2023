@@ -14,6 +14,8 @@ public class LevelSelectMenu : MonoBehaviour
 
     public void LoadLevel(int number)
     {
+        audioManager.PlayUnique("MusicLoop");
+        audioManager.StopSound("MainMenuLoop");
         SceneManager.LoadScene("Level" + number.ToString());
     }
 

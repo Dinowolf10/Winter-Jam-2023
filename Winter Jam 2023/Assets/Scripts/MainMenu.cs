@@ -13,6 +13,13 @@ public class MainMenu : MonoBehaviour
     {
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         player = GameObject.Find("Player").GetComponent<Player>();
+
+
+        if (SceneManager.GetActiveScene().name == "MainMenu")
+        {
+            audioManager.StopSound("MusicLoop");
+            audioManager.PlayUnique("MainMenuLoop");
+        }
     }
 
     /// <summary>
@@ -21,6 +28,8 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         audioManager.PlayUnique("ButtonClick");
+        audioManager.PlayUnique("MusicLoop");
+        audioManager.StopSound("MainMenuLoop");
         StartCoroutine(PlayGameCutscene());
     }
 
