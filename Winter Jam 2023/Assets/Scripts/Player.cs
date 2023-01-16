@@ -289,7 +289,7 @@ public class Player : MonoBehaviour
         playerAnimator.SetBool("isIdle", true);
         audioManager.Play("CollectItem");
         cutsceneCanvas.SetActive(true);
-        yield return new WaitForSeconds(8f);
+        yield return new WaitForSeconds(7f);
 
         audioManager.Play("OpenDoor");
         crown.SetActive(false);
@@ -306,7 +306,7 @@ public class Player : MonoBehaviour
         firstText.SetActive(false);
         secondText.SetActive(true);
 
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(8f);
 
         Camera cam = Camera.main;
         cam.GetComponent<FollowPlayer>().playerDead = false;
