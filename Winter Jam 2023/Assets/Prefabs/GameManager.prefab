@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d730d93fbb1d52842a679576dff07978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTime: 3
-  warningTimeMarker: 2
+  startTime: 15
+  warningTimeMarker: 10
   timerText: {fileID: 0}
   levelManager: {fileID: 8080796102477390180}
 --- !u!114 &5769401225155991805
