@@ -55,6 +55,7 @@ public class MainMenu : MonoBehaviour
     public void LoadMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1.0f;
     }
 
     public void ResumeGame()
