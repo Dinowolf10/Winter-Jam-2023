@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
     private AudioManager audioManager;
 
     private bool openedDoor = false;
+    private bool isDying = false;
 
     // Start is called before the first frame update
     private void Start()
@@ -119,6 +120,11 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (isDying)
+        {
+            return;
+        }
+
         // If the player hits a trap, restart the level
         if (collision.gameObject.tag == "Spikes" || collision.gameObject.tag == "Dart" || collision.gameObject.tag == "Boulder")
         {
@@ -136,6 +142,11 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (isDying)
+        {
+            return;
+        }
+
         // If the player collides with a key fragment, destroy it and update the collectables
         if (collision.gameObject.tag == "KeyFragment")
         {
@@ -199,9 +210,13 @@ public class Player : MonoBehaviour
     private IEnumerator HandleDeath()
     {
         audioManager.Play("DeathGrunt");
+        playerAnimator.SetBool("isIdle", false);
+        playerAnimator.SetBool("isRunning", false);
+        playerAnimator.SetBool("isJumping", false);
+        playerAnimator.SetBool("isDying", true);
         playerInput.enabled = false;
-        spriteRenderer.enabled = false;
-        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        isDying = true;
+        //gameObject.GetComponent<BoxCollider2D>().enabled = false;
         groundCheckCollider.enabled = false;
         stompCheckCollider.enabled = false;
         Camera cam = Camera.main;
